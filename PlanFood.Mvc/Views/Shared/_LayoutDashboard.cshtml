@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <partial name="_Head" />
+</head>
+
+<body>
+    <partial name="_LoginPartial" />
+    <section class="dashboard-section">
+        <div class="row dashboard-nowrap">
+            <partial name="_MenuDashboard" />
+            @RenderBody()
+        </div>
+    </section>
+    <partial name="_ScriptsPartial" />
+</body>
+</html>

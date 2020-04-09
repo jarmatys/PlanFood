@@ -1,0 +1,49 @@
+﻿@model IList<Plan>
+
+@{
+    Layout = "_LayoutDashboard";
+    ViewData["Title"] = "Lista";
+}
+
+<div class="m-4 p-3 width-medium">
+    <div class="dashboard-content border-dashed p-3 m-4 view-height">
+        <div class="row border-bottom border-3 p-1 m-1">
+            <div class="col noPadding">
+                <h3 class="color-header text-uppercase">LISTA PLANÓW</h3>
+            </div>
+            <div class="col d-flex justify-content-end mb-2 noPadding">
+                <a class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4" asp-action="Add" asp-controller="Plan">Dodaj plan</a>
+            </div>
+        </div>
+
+        <div class="schedules-content">
+            <table class="table border-bottom">
+                <thead>
+                    <tr class="d-flex">
+                        <th class="col-1">ID</th>
+                        <th class="col-2">NAZWA</th>
+                        <th class="col-7">OPIS</th>
+                        <th class="col-2 center">AKCJE</th>
+                    </tr>
+                </thead>
+                <tbody class="text-color-lighter">
+                    @{int counter = 1; }
+                    @foreach (var plan in Model)
+                    {
+                        <tr class="d-flex">
+                            <td class="col-1">@counter</td>
+                            <td class="col-2">@plan.Name</td>
+                            <td class="col-7">@plan.Description</td>
+                            <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
+                                <a class="btn btn-danger rounded-0 text-light m-1" asp-action="ConfirmRemovePlan" asp-controller="Plan" asp-route-id="@plan.Id">Usuń</a>
+                                <a class="btn btn-info rounded-0 text-light m-1" asp-action="Details" asp-controller="Plan" asp-route-id="@plan.Id">Szczegóły</a>
+                                <a class="btn btn-warning rounded-0 text-light m-1" asp-action="Edit" asp-controller="Plan" asp-route-id="@plan.Id">Edytuj</a>
+                            </td>
+                        </tr>
+                        counter++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

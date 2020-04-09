@@ -1,0 +1,87 @@
+﻿@model PlanDetailsViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_LayoutDashboard";
+
+}
+
+<div class="m-4 p-4 width-medium">
+    <div class="dashboard-header m-4">
+        <div class="dashboard-menu">
+            <div class="menu-item border-dashed">
+                <a asp-action="Add" asp-controller="Recipe">
+                    <i class="far fa-plus-square icon-plus-square"></i>
+                    <span class="title">dodaj przepis</span>
+                </a>
+            </div>
+            <div class="menu-item border-dashed">
+                <a asp-action="Add" asp-controller="Plan">
+                    <i class="far fa-plus-square icon-plus-square"></i>
+                    <span class="title">dodaj plan</span>
+                </a>
+            </div>
+            <div class="menu-item border-dashed">
+                <a asp-action="AddRecipe" asp-controller="Plan">
+                    <i class="far fa-plus-square icon-plus-square"></i>
+                    <span class="title">dodaj przepis do planu</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="dashboard-alerts">
+            <div class="alert-item alert-info">
+                <i class="fas icon-circle fa-info-circle"></i>
+                <span class="font-weight-bold">Liczba przepisów: @ViewBag.AddedRecipie</span>
+            </div>
+            <div class="alert-item alert-light">
+                <i class="far icon-calendar fa-calendar-alt"></i>
+                <span class="font-weight-bold">Liczba planów: @ViewBag.AddedPlans</span>
+            </div>
+        </div>
+    </div>
+    <div class="m-4 p-4 border-dashed">
+        @if (Model != null)
+        {
+            <h2 class="dashboard-content-title">
+                <span>Ostatnio dodany plan:</span> @Model.PlanName
+            </h2>
+
+            @foreach (var day in Model.DayNames)
+            {
+                <table class="table">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-2">@day.DayName</th>
+                            <th class="col-7"></th>
+                            <th class="col-1"></th>
+                            <th class="col-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-color-lighter">
+                        @foreach (var recipe in day.RecipeList)
+                        {
+                            <tr class="d-flex">
+                                <td class="col-2">@recipe.MealName</td>
+                                <td class="col-7">@recipe.RecipeName</td>
+                                <td class="col-1 center">
+                                    <a asp-action="ConfirmRemoveRecipe" asp-controller="Recipe" asp-route-id="@recipe.Id" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                </td>
+                                <td class="col-2 center">
+                                    <a asp-action="Details" asp-controller="Recipe" asp-route-id="@recipe.Id" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+        else
+        {
+            <h2 class="dashboard-content-title">
+                <span>Brak dodanych planów</span>
+            </h2>
+        }
+
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿@model ConfirmRemoveRecipeFromPlanViewModel
+@{
+    ViewData["Title"] = "Potwierdź usunięcie przepisu z planu";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="m-4 p-3 width-medium">
+    <div class="dashboard-content border-dashed p-3 m-4">
+        <div class="row border-bottom border-3 p-1 m-1">
+            <div class="col noPadding">
+                <h3 class="color-header text-uppercase">Czy na pewno usunąć przepis z planu?</h3>
+            </div>
+        </div>
+        <form asp-action="RemoveRecipeFromPlan" asp-controller="Plan" method="post">
+            Plan: @Model.Plan.Name<br>
+            Przepis: @Model.Recipe.Name
+            <input type="hidden" asp-for="Plan.Id" value="@Model.Plan.Id" />
+            <input type="hidden" asp-for="Recipe.Id" value="@Model.Recipe.Id" />
+            <input type="hidden" asp-for="RecipePlanId" value="@Model.RecipePlanId" /><br /> 
+            <a class="btn btn-info rounded-0" asp-action="Details" asp-controller="Plan" asp-route-id="@Model.Plan.Id">Anuluj</a>
+            <input class="btn btn-danger rounded-0" type="submit" value="Usuń"/>
+        </form>
+    </div>
+</div>

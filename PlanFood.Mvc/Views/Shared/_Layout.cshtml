@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Strona gówna";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <partial name="_Head" />
+</head>
+<body>
+    <partial name="_NavigationPartial" />
+    <div>
+        @RenderBody()
+    </div>
+    <partial name="_FooterPartial" />
+    <partial name="_ScriptsPartial" />
+    @*<partial name="_ValidationScriptsPartial" /> - uncomment later*@ 
+</body>
+</html>

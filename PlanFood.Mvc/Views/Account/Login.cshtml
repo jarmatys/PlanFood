@@ -1,0 +1,32 @@
+﻿@model PlanFood.Mvc.Models.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Logowanie";
+    Layout = "_Layout";
+}
+
+
+<section class="dashboard-section">
+    <div class="container pt-4 pb-4">
+        <div class="border-dashed view-height">
+            <div class="container w-25">
+                <form class="padding-small text-center" asp-action="Login" asp-controller="Account" method="post">
+                    <h1 class="text-color-darker">Logowanie</h1>
+                    <div class="form-group">
+                        <input asp-for="Email" type="text" class="form-control" placeholder="podaj adres email">
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Password" type="password" class="form-control" placeholder="podaj hasło">
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <button class="btn btn-color rounded-0" type="submit">Zaloguj</button>
+                    <div asp-validation-summary="All"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+
+
